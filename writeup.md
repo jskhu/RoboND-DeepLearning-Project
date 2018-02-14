@@ -1,4 +1,10 @@
 [image_0]: ./pictures/my_plot.png
+[image_1]: ./pictures/hero.png
+[image_2]: ./pictures/non_target.png
+[image_3]: ./pictures/patrol_with_targ.png
+[image_4]: ./pictures/training_curves.png
+[image_5]: ./pictures/final_score.png
+
 ## Neural Network Architecture
 - Input layer (3 features)
 - Encoding layers (32, 64, 64) - increase depth for more information
@@ -30,5 +36,30 @@ Encoding reduces the height and width of the convolution in favour of more featu
 ### Decoding
 Due to the encoding process, the segmented portions of the image can be recognized but there is a loss of spatial information. The process of decoding allows the network to regain the spatial information, specifically locating where the segmented object is located within the dimensions of the original image. This is done from Bilinear upsampling. Skip connections are also used to gain more accurate spatial information.
 
+## Results
+The following is a summary of the results. The full html file can be viewed at `code/model_training.html`
+### Training curve
+![alt text][image_4]
+### following_images
+![alt text][image_1]
+### patrol_non_targ
+![alt text][image_2]
+### patrol_with_targ
+![alt text][image_3]
+### Final score
+![alt text][image_5]
+The final score is 0.43 accuracy. Since the accuracy is greater than 40%, the project is a success.
+
 ## Applications of the Neural Network
-Although the trained model is able to locate humans within given images, its application to other class segmentation is limited. Other objects like dogs, cats, or cars would not be properly segmented since the training set did not contain those kinds of objects as well as the training . If it was necessary to expand the network's functionality, new training data would be needed and the neural network may need to modified to adjust to the new images.
+Although the trained model is able to locate humans within given images, its application to other class segmentation is limited. Other objects like dogs, cats, or cars would not be properly segmented since the training set did not contain those kinds of objects as well as the training. If it was necessary to expand the network's functionality, new training data would be needed and the neural network may need to modified to adjust to the new images.
+
+## Future Enhancements
+The results were disappointing since it is not very accurate. It was difficult to understand the effects of hyperparameter tuning as they caused different results. In the scope of the project, I tried to limit the amount of parameters I tuned to 2 or 3 so I could focus on them. Ideally, it would be better to tune all of the parameters to fully optimize the network.
+
+The greatest limitation for this project was the time constraints. Training networks with more layers were more time expensive and if they required hyperparameter tuning, would need a lot of time to optimize. If more time was available, I would try different network architectures to see which one has the most potential.
+
+Another idea to explore is to implement dropout in the network. As shown in the training graph, there was a large increase in cost at the 6th epoch. It's not clear what happened but it is possible that the training data was much different in comparison to the first 5 epochs. Dropout could potentially create more redundancies in the network so that the network is more robust in terms of handling unknown images.
+
+The final enhancement I would consider implementing is a script that would tabulate the performance of each neural network I trained. This way, I could see the comparative performances of different neural networks based on their hyperparameter tuning. This would help a lot when going through the neural network architecture changes.
+
+With these enhancements, it is likely to improve the accuracy of the neural network significantly.
