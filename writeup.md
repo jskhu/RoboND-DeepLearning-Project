@@ -1,21 +1,22 @@
+[image_0]: ./pictures/my_plot.png
 ## Neural Network Architecture
 - Input layer (3 features)
-- Encoding layers (16, 32, 64) - increase depth for more information
+- Encoding layers (32, 64, 64) - increase depth for more information
 - 1x1 convolution layer - retain spatial information
-- Decoding layer (64, 32, 16) - upsample layers to retain spatial information, also contains skip connections
+- Decoding layer (64, 64, 32) - upsample layers to retain spatial information, also contains skip connections
 
 ## Neural Network Diagram
-
+![alt text][image_0]
 ## Neural Network Parameters
-- `learning_rate = 0.05` The learning rate was made small so the network would converge to a lower minimum. However, because of the lower learning rate, the number of epochs needed to be increased so the cost fo the neural network could properly be minimized
-- `batch_size = 50` The batch size was
-- `num_epochs = 5` Due to the limitations of time, it was decided to keep the number of epochs as low as possible. Also, from testing, going above 10 epochs did not improve the overall network performance by a significant amount.
+- `learning_rate = 0.003` The learning rate was made small so the network would converge to a lower minimum. However, because of the lower learning rate, the number of epochs needed to be increased so the cost of the neural network could properly be minimized
+- `batch_size = 30` The batch size was lowered for faster training.
+- `num_epochs = 15` Due to the limitations of time, it was decided to keep the number of epochs as low as possible. It was incrementally changed from 5 to 15 epochs through testing. Since the learning rate was lowered, more epochs were needed to minimize the cost.
 - `validation_steps = 50` Kept as default
 - `workers = 2` Kept as default
 
 ## Neural Network Techniques
 ### 1x1 convolutions
-A 1x1 convolution is used to preserve spatial information as well as make neural newtorks deeper to model more complex relationships. They are relatively inexpensive since they are just another matrix multiplication.
+A 1x1 convolution is used to preserve spatial information as well as make neural networks deeper to model more complex relationships. They are relatively inexpensive since they are just another matrix multiplication.
 
 ### Fully connected layers
 Fully connected layers should be used when spatial information does not matter such as classifying a single object, or predicting an abstract value. However, due to the nature of the problem, 1x1 convolutions are preferred because of they retain spatial information.
